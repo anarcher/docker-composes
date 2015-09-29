@@ -1,0 +1,6 @@
+gitlab:
+    image: gitlab/gitlab-ce
+    ports:
+        - "8443:443"
+        - "8080:80"
+        - "2222:22"
