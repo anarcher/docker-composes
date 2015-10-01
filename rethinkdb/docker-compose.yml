@@ -1,0 +1,4 @@
+rethinkdb:
+    image: rethinkdb
+    ports:
+        - "5000:8080"
