@@ -1,0 +1,6 @@
+image: rethinkdb
+name: rethinkdb
+publish:
+      - "5000:8080"
+restart: always
+detach: true

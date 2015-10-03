@@ -1,0 +1,11 @@
+image: shipyard/shipyard
+name: shipyard
+volume:
+      - /etc/docker:/etc/docker:ro
+publish:
+      - "8080:8080"
+link:
+      - rethinkdb
+      - swarm-agent-master2:swarm
+command: server --rethinkdb-addr rethinkdb:28015 -d tcp://swarm:2375 --tls-ca-cert=/etc/docker/ca.pem --tlscert=/etc/docker/server.pem --tlskey=/etc/docker/server-key.pem
+detach: true
