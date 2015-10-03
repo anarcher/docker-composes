@@ -1,11 +1,19 @@
+swarm:
+    image: swarm
+
 rethinkdb:
     image: rethinkdb
     ports:
         - "5000:8080"
+    restart: always
 shipyard:
     image: shipyard/shipyard
     links:
         - rethinkdb
+        - swarm-agent-master2:swarm
+    volumes:
+        - /etc/docker:/etc/docker:ro
     ports:
         - "8080:8080"
-    command: server --rethinkdb-addr rethinkdb:28015 -d "tcp://127.0.0.1:2375"
+    command: server --rethinkdb-addr rethinkdb:28015 -d tcp://swarm:2375 --tls-ca-cert=/etc/docker/ca.pem --tlscert=/etc/docker/server.pem --tlskey=/etc/docker/server-key.pem
+    restart: always
