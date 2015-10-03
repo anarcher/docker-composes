@@ -1,0 +1,11 @@
+rethinkdb:
+    image: rethinkdb
+    ports:
+        - "5000:8080"
+shipyard:
+    image: shipyard/shipyard
+    links:
+        - rethinkdb
+    ports:
+        - "8080:8080"
+    command: server --rethinkdb-addr rethinkdb:28015 -d "tcp://127.0.0.1:2375"
