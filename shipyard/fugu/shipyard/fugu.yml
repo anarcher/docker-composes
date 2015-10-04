@@ -7,5 +7,5 @@ publish:
 link:
       - rethinkdb
       - swarm-agent-master2:swarm
-command: server --rethinkdb-addr rethinkdb:28015 -d tcp://swarm:2375 --tls-ca-cert=/etc/docker/ca.pem --tlscert=/etc/docker/server.pem --tlskey=/etc/docker/server-key.pem
+command: server --rethinkdb-addr rethinkdb:28015 -d tcp://swarm:2375 --tls-ca-cert=/etc/docker/ca.pem --tls-cert=/etc/docker/server.pem --tls-key=/etc/docker/server-key.pem
 detach: true
