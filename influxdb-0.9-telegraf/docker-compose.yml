@@ -1,5 +1,9 @@
 influxdb:
-    image: anarcher/influxdb:0.9.5-rc2
+    container_name: influxdb
+    build: . 
+    dockerfile: influxdb.Dockerfile
+    #image: anarcher/influxdb:0.9.5-rc2
+    net: "influxdb"
     ports:
         - "8083:8083"
         - "8086:8086"
@@ -7,8 +11,10 @@ influxdb:
         - PRE_CREATE_DB="telegraf"
                                        #
 telegraf:
+    container_name: telegraf
     build: .
     dockerfile: telegraf.Dockerfile
+    net: "influxdb"
     volumes: 
         - /sys:/sys:ro
         - /var/run/docker.sock:/var/run/docker.sock
