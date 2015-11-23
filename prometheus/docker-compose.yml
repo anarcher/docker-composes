@@ -13,8 +13,9 @@ container_exporter:
     ports:
         - "9104:9104"
     volumes:
-        - "/sys/fs/cgroup:/cgroup"
+        - "/sys/fs/cgroup:/sys/fs/cgroup"
         - "/var/run/docker.sock:/var/run/docker.sock"
+    command: "-parent=/system.slice"
 node_exporter:
     container_name: node_exporter
     image: prom/node-exporter
