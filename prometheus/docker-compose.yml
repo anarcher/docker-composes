@@ -1,0 +1,27 @@
+prom:
+    container_name: prom
+    image: prom/prometheus
+    net: "prom"
+    ports:
+        - "9090:9090"
+    volumes:
+        - "./prometheus.yml:/etc/prometheus/prometheus.yml"
+container_exporter:
+    container_name: container_exporter
+    image: prom/container-exporter
+    net: "prom"
+    ports:
+        - "9104:9104"
+    volumes:
+        - "/sys/fs/cgroup:/cgroup"
+        - "/var/run/docker.sock:/var/run/docker.sock"
+node_exporter:
+    container_name: node_exporter
+    image: prom/node-exporter
+    net: "prom"
+    ports:
+        - "9100:9100"
+    volumes:
+        - "/proc:/host/proc"
+        - "/sys:/host/sys"
+    command: "-collector.sysfs=/host/sys -collector.procfs=/host/proc"
