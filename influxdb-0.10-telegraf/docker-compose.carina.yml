@@ -1,4 +1,0 @@
-influxdb:
-    net: bridge
-telegraf:
-    net: bridge

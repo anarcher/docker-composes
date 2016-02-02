@@ -9,14 +9,12 @@ influxdb:
         - "8086:8086"
     environment:
         - PRE_CREATE_DB="telegraf"
-    net: influx
                                        #
 telegraf:
     container_name: telegraf
     build: .
-    net: influx
-    dockerfile: telegraf.Dockerfile
     net: "influxdb"
+    dockerfile: telegraf.Dockerfile
     volumes: 
         - /sys:/sys:ro
         - /var/run/docker.sock:/var/run/docker.sock
@@ -25,6 +23,6 @@ chronograf:
     container_name: chronograf
     build: .
     dockerfile: chronograf.Dockerfile
-    net: influx
+    net: "influxdb"
     ports:
         - "8081:80"
