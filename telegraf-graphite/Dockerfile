@@ -12,9 +12,9 @@ RUN apk update \
     && echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf \
     && rm /tmp/* /var/cache/apk/*
 
-RUN wget -c -P /tmp http://get.influxdb.org/telegraf/telegraf-0.10.1-1_linux_amd64.tar.gz \
+RUN wget -c -P /tmp http://get.influxdb.org/telegraf/telegraf-0.10.4-1_linux_amd64.tar.gz \
     && tar -C /tmp -xzvf /tmp/telegraf-*linux_amd64.tar.gz \
-    && mv /tmp/usr/bin/telegraf /usr/local/bin \
+    && mv /tmp/telegraf /usr/local/bin \
     && rm -rf /tmp/*
 
 ENV HOST_PROC='/proc' HOST_SYS='/sys'
