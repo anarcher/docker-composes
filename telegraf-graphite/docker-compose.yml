@@ -1,0 +1,13 @@
+telegraf:
+  image: cgeoffroy/telegraf
+  environment:
+    HOST_PROC: /rootfs/proc
+    HOST_SYS: /rootfs/sys
+  net: "host"
+  volumes:
+    - "./telegraf.conf:/telegraf.conf:ro"
+    - "/sys:/rootfs/sys:ro"
+    - "/proc:/rootfs/proc:ro"
+    - "/var/run/docker.sock:/var/run/docker.sock:ro"
+  entrypoint: /bin/sh
+  command: -c "sleep 10s && exec /usr/local/bin/telegraf -config /telegraf.conf"
