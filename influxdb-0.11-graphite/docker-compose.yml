@@ -1,0 +1,30 @@
+influxdb:
+    container_name: influxdb
+    build: . 
+    dockerfile: influxdb.Dockerfile
+    #image: anarcher/influxdb:0.9.5-rc2
+    volumes: 
+        - influxdb:/influxdb
+    net: "influxdb"
+    ports:
+        - "8083:8083"
+        - "8086:8086"
+    environment:
+        - PRE_CREATE_DB="telegraf"
+                                       #
+telegraf:
+    container_name: telegraf
+    build: .
+    net: "influxdb"
+    dockerfile: telegraf.Dockerfile
+    volumes: 
+        - /sys:/sys:ro
+        - /var/run/docker.sock:/var/run/docker.sock
+
+chronograf:
+    container_name: chronograf
+    build: .
+    dockerfile: chronograf.Dockerfile
+    net: "influxdb"
+    ports:
+        - "8081:80"
