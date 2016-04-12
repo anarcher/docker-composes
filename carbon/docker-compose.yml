@@ -1,0 +1,15 @@
+version: "2"
+services:
+    server:
+        build:
+            dockerfile: server.Dockerfile
+            context: . 
+    zipper:
+        build:
+            dockerfile: zipper.Dockerfile
+            context: .
+    api:
+        build:
+            dockerfile: api.Dockerfile
+            context: .
+
