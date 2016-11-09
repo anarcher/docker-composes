@@ -21,34 +21,34 @@ scrape_configs:
   - job_name: 'prometheus'
 
     # Override the global default and scrape targets from this job every 5 seconds.
-    scrape_interval: 5s
+    scrape_interval: 10s
     scrape_timeout: 10s
 
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
 
-    target_groups:
+    static_configs:
       - targets: ['localhost:9090']
   - job_name: 'containers'
 
     # Override the global default and scrape targets from this job every 5 seconds.
-    scrape_interval: 5s
+    scrape_interval: 10s
     scrape_timeout: 10s
 
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
 
-    target_groups:
+    static_configs:
       - targets: ['container_exporter:9104']
   - job_name: 'nodes'
 
     # Override the global default and scrape targets from this job every 5 seconds.
-    scrape_interval: 5s
+    scrape_interval: 10s
     scrape_timeout: 10s
 
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
 
-    target_groups:
+    static_configs:
       - targets: ['node_exporter:9100']
 
