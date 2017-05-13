@@ -1,0 +1,22 @@
+version: '3'
+services:
+    wiki:
+        image: mazzolino/tiddlywiki
+        ports:
+            - "80:8080"
+        volumes:
+            - tiddlywiki:/var/lib/tiddlywiki
+        environment:
+            - USERNAME=${USERNAME:-user}
+            - PASSWORD=${PASSWORD:-wiki}
+        deploy:
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+            placement:
+                constraints:
+                    - node.labels.wiki == tiddly
+
+volumes:
+    tiddlywiki:
+
